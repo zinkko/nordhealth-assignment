@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend
+    command: ['uvicorn', 'src.main:app', '--reload', '--host', '0.0.0.0', '--port', '8000']
+    environment:
+      DATABASE_URL: postgresql+psycopg2://postgres:verysecret@db:5432/users
+      PYTHONUNBUFFERED: 1
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/src:/code/src
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend/src:/code/src
+
+  db:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_PASSWORD: verysecret
+      POSTGRES_DB: users
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+
+volumes:
+  postgres_data:
