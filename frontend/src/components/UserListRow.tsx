@@ -11,6 +11,7 @@ interface UserListRowProps {
 export const UserListRow = ({ user, onDelete }: UserListRowProps) => (
     <ListItem key={user.id}>
         <Stack direction='row' spacing={2}>
+            <Typography color='gray'>{user.id}</Typography>
             <Typography fontWeight={700}>{user.name}</Typography>
             <InboxIcon />
             <Typography>{user.email}</Typography>
