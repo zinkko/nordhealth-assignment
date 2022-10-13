@@ -4,3 +4,9 @@ export interface User {
     name: string,
     email: string,
 }
+
+export enum LoadingStatus {
+    ShouldLoad,
+    Loading,
+    Done,
+}

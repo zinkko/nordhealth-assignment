@@ -1,17 +1,20 @@
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Modal, Stack, TextField, Typography } from "@mui/material";
 import { useState } from "react";
+import { createUser } from "../api/api";
 
 interface CreateModalProps {
     isOpen: boolean;
     handleClose: (...args: unknown[]) => unknown,
+    requestReload: (...args: unknown[]) => unknown,
 }
 
-export const CreateModal = ({ isOpen, handleClose }: CreateModalProps) => {
+export const CreateModal = ({ isOpen, handleClose, requestReload }: CreateModalProps) => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
 
     const create = () => {
-        // TODO add api logic
+        createUser({ name, email });
+        requestReload();
         handleClose();
     }
 
