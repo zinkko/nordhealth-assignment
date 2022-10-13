@@ -15,13 +15,19 @@ export const CreateModal = ({ isOpen, handleClose, requestReload }: CreateModalP
     const create = () => {
         createUser({ name, email });
         requestReload();
+        cleanUpAndClose();
+    }
+
+    const cleanUpAndClose = () => {
+        setName('');
+        setEmail('');
         handleClose();
     }
 
     return (
         <Dialog
             open={isOpen}
-            onClose={handleClose}
+            onClose={cleanUpAndClose}
         >
             <DialogTitle>Create User</DialogTitle>
             <DialogContent>
@@ -46,7 +52,7 @@ export const CreateModal = ({ isOpen, handleClose, requestReload }: CreateModalP
             </DialogContent>
             <DialogActions disableSpacing>
                 <Button onClick={create}>Create</Button>
-                <Button onClick={handleClose}>Cancel</Button>
+                <Button onClick={cleanUpAndClose}>Cancel</Button>
             </DialogActions>
         </Dialog>
     );
