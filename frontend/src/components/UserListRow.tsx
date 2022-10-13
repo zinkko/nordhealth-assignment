@@ -7,7 +7,7 @@ import useMediaQuery from '@mui/material/useMediaQuery';
 
 interface UserListRowProps {
     user: User;
-    onDelete: (...args: unknown[]) => unknown;
+    onDelete: () => void;
 }
 
 export const UserListRow = ({ user, onDelete }: UserListRowProps) => {

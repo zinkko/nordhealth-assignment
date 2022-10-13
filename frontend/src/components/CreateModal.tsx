@@ -4,8 +4,8 @@ import { createUser } from "../api/api";
 
 interface CreateModalProps {
     isOpen: boolean;
-    handleClose: (...args: unknown[]) => unknown,
-    requestReload: (...args: unknown[]) => unknown,
+    handleClose: () => void,
+    requestReload: () => void,
 }
 
 export const CreateModal = ({ isOpen, handleClose, requestReload }: CreateModalProps) => {
