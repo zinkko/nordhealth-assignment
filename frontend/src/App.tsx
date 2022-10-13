@@ -1,9 +1,9 @@
-import { Button, Divider, List, ListItem, Typography } from '@mui/material';
+import { Button, Divider, List, Typography } from '@mui/material';
 import Box from '@mui/material/Box';
-import InboxIcon from '@mui/icons-material/Inbox';
 import { Stack } from '@mui/system';
 import { useState } from 'react';
 import { CreateModal } from './components/CreateModal';
+import { UserListRow } from './components/UserListRow';
 
 const users = [
   {
@@ -43,22 +43,7 @@ function App() {
     <Box p={5}>
       <Typography variant='h1'>User Page</Typography>
       <List>
-        {users.map(user => (
-          <ListItem key={user.id}>
-            <Stack direction='row' spacing={2}>
-              <Typography fontWeight={700}>{user.name}</Typography>
-              <InboxIcon />
-              <Typography>{user.email}</Typography>
-              <Button
-                variant='contained'
-                color='error'
-                size='small'
-              >
-                delete
-              </Button>
-            </Stack>
-          </ListItem>
-        ))}
+        {users.map(user => (<UserListRow user={user} />))}
       </List>
       <Divider />
       <Stack marginTop={4} direction='row' spacing={2}>
