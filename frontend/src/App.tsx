@@ -6,12 +6,14 @@ import { getUsers } from './api/api';
 import { CreateModal } from './components/CreateModal';
 import { UserListRow } from './components/UserListRow';
 import { LoadingStatus, User } from './types';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 
 function App() {
   const [createModalOpen, setCreateModalOpen] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
   const [loadingStatus, setLoadingStatus] = useState(LoadingStatus.ShouldLoad);
+  const isLargeDisplay = useMediaQuery('(min-width:600px)');
 
   const handleOpen = () => {
     setCreateModalOpen(true);
@@ -32,8 +34,8 @@ function App() {
   });
 
   return (
-    <Box p={5}>
-      <Typography variant='h1'>User Page</Typography>
+    <Box p={isLargeDisplay ? 5 : 2}>
+      <Typography variant={isLargeDisplay ? 'h1' : 'h2'}>User Page</Typography>
       <List>
         {users.map(user => (
           <UserListRow
